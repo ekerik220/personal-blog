@@ -1,8 +1,9 @@
 const tailwindcssPluginContent = require("tailwindcss-plugin-content")
+const typography = require("@tailwindcss/typography")
 
 module.exports = {
   content: ["./app/**/*.{ts,tsx,jsx,js}"],
-  plugins: [tailwindcssPluginContent],
+  plugins: [tailwindcssPluginContent, typography],
   theme: {
     letterSpacing: {
       tight: "-0.025em",

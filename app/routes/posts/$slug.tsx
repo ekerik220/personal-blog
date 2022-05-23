@@ -14,12 +14,14 @@ export default function PostSlug() {
   const { post, html } = useLoaderData() as LoaderData
 
   return (
-    <article>
+    <>
       <PostMetaData post={post} />
-      <Heading>{post.title}</Heading>
-      <img alt="post banner" src={post.bannerImg} className="mt-4 mb-8" />
-      <div dangerouslySetInnerHTML={{ __html: html }} />
-    </article>
+      <article className="prose lg:prose-xl">
+        <Heading>{post.title}</Heading>
+        <img alt="post banner" src={post.bannerImg} className="mt-4 mb-8" />
+        <div dangerouslySetInnerHTML={{ __html: html }} />
+      </article>
+    </>
   )
 }
 
