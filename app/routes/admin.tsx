@@ -3,6 +3,7 @@ import { json } from "@remix-run/node"
 import { Link, Outlet, useLoaderData } from "@remix-run/react"
 
 import { getPosts } from "server/models/post.server"
+import { requireUserId } from "server/models/session.server"
 
 type LoaderData = {
   posts: Awaited<ReturnType<typeof getPosts>>
@@ -33,6 +34,7 @@ export default function PostAdmin() {
   )
 }
 
-export const loader: LoaderFunction = async () => {
+export const loader: LoaderFunction = async ({ request }) => {
+  await requireUserId(request)
   return json({ posts: await getPosts() })
 }
