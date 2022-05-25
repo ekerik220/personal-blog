@@ -9,3 +9,4 @@ node_modules
 /public/build
 /api/index.js
 /app/tailwind.css
+coverage
