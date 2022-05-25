@@ -18,7 +18,7 @@ const navItems = [
 export const Header: CVFC<Props> = ({ className }) => {
   return (
     <div className="flex items-end justify-between pb-1 mt-16 border-b mb-14">
-      <Link to="/">
+      <Link to="/" aria-label="navigate home">
         <GiPlanetCore size="60px" className="mb-2 text-primarytext" />
       </Link>
       <ul className={className}>
