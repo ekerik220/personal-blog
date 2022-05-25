@@ -14,10 +14,7 @@ export default function Index() {
   return (
     <main>
       {posts.map((post) => (
-        <>
-          <PostPreviewCard key={post.id} post={post} />
-          <div className="h-12" />
-        </>
+        <PostPreviewCard key={post.id} post={post} className="mb-12" />
       ))}
     </main>
   )

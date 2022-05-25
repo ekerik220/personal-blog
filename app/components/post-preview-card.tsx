@@ -3,15 +3,16 @@ import { Link } from "@remix-run/react"
 import { Heading } from "~/components/heading"
 import { PostMetaData } from "~/components/post-meta-data"
 import { Text } from "~/components/text"
+import { CVFC } from "~/types/react-types"
 
 type Props = {
   post: Post
 }
 
-export const PostPreviewCard: React.VFC<Props> = ({ post }) => {
+export const PostPreviewCard: CVFC<Props> = ({ post, className }) => {
   return (
     <div>
-      <PostMetaData post={post} />
+      <PostMetaData post={post} className={className} />
       <Heading>
         <Link to={`posts/${post.slug}`}>{post.title}</Link>
       </Heading>
