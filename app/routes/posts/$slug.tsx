@@ -16,8 +16,9 @@ export default function PostSlug() {
   return (
     <>
       <PostMetaData post={post} />
-      <article className="prose lg:prose-xl">
-        <Heading>{post.title}</Heading>
+      <Heading>{post.title}</Heading>
+      <div className="h-4" />
+      <article className="prose lg:prose-xl prose-h2:text-[10px]">
         <img alt="post banner" src={post.bannerImg} className="mt-4 mb-8" />
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </article>
