@@ -24,6 +24,6 @@ export async function updatePost(id: string, post: PartialPost) {
   })
 }
 
-export async function deletePost(id: string, post: PartialPost) {
-  return prisma.post.update({ where: { id }, data: post })
+export async function deletePost(id: string) {
+  return prisma.post.delete({ where: { id } })
 }
