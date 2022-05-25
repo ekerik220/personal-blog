@@ -1,7 +1,12 @@
 import { ActionFunction, LoaderFunction, redirect } from "@remix-run/node"
 import { json } from "@remix-run/node"
-import { useActionData, useLoaderData, useTransition } from "@remix-run/react"
-import { getPost, updatePost } from "server/models/post.server"
+import {
+  Form,
+  useActionData,
+  useLoaderData,
+  useTransition,
+} from "@remix-run/react"
+import { deletePost, getPost, updatePost } from "server/models/post.server"
 import invariant from "tiny-invariant"
 import { Post } from "@prisma/client"
 import { PostForm, PostFormFields } from "~/components/post-form"
@@ -19,9 +24,16 @@ export default function AdminPostSlug() {
 
   return (
     <div className="flex-col">
-      <button className="block px-4 py-2 ml-auto text-white bg-blue-500 rounded">
-        Delete
-      </button>
+      <Form method="delete">
+        <input hidden name="id" value={post.id} />
+        <button
+          name="_action"
+          value="delete"
+          className="block px-4 py-2 ml-auto text-white bg-blue-500 rounded"
+        >
+          Delete
+        </button>
+      </Form>
       <PostForm
         action="update"
         defaults={post}
@@ -34,8 +46,15 @@ export default function AdminPostSlug() {
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData()
-  const { id, title, slug, markdown, excerpt, bannerImg } =
+  const { id, title, slug, markdown, excerpt, bannerImg, _action } =
     extractFormData<PostFormFields>(formData)
+
+  if (_action === "delete") {
+    console.log(id)
+    if (!id) return null
+    await deletePost(id)
+    return redirect("/admin")
+  }
 
   const errors: ActionData = {
     title: title ? undefined : "Title is required",
