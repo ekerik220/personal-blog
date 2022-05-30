@@ -11,8 +11,8 @@ type Props = {
 
 export const PostPreviewCard: CVFC<Props> = ({ post, className }) => {
   return (
-    <div>
-      <PostMetaData post={post} className={className} />
+    <div className={className}>
+      <PostMetaData post={post} />
       <Heading>
         <Link to={`posts/${post.slug}`}>{post.title}</Link>
       </Heading>
