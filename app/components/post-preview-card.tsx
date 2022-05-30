@@ -21,7 +21,7 @@ export const PostPreviewCard: CVFC<Props> = ({ post, className }) => {
           <img
             alt="post banner"
             src={post.bannerImg}
-            className="aspect-[3] object-cover"
+            className="object-cover w-full"
           />
           <div className="absolute top-0 w-full h-full transition duration-300 ease-linear bg-white opacity-0 hover:opacity-20" />
         </div>
