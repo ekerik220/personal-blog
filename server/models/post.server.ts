@@ -4,7 +4,7 @@ import { prisma } from "~/db.server"
 type PartialPost = Omit<Post, "id" | "createdAt" | "updatedAt">
 
 export async function getPosts() {
-  return prisma.post.findMany()
+  return prisma.post.findMany({ orderBy: [{ createdAt: "desc" }] })
 }
 
 export async function getPost(slug: string) {
